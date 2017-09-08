@@ -42,3 +42,49 @@ def math_functionality():
 		except ZeroDivisionError:
 			print("the dividend may not be zero!")
 			
+def age_functionality():
+	try:
+		use_age_input = int(input("Input a valid age:"))
+	except NameError as e:
+		print("\nAge must be a number!")
+	if(user_age_input <= 0 or user_age_input >= 100):
+		raise UserAgeException
+
+def our_program():
+	print('''
+	Our program will have two parts:
+	1 => Age
+	2 => Dividend and divisor
+
+	We will cover the following topics:
+	1. Exception handling
+	2. try/catch
+	3. try/else/finally
+	4. Custom Exception
+	''')
+
+	if(__name__ == "__main__"):
+		our_program()
+		print("Select one option\n1 => Age\n2 => Math")
+		while 1:
+			try:
+				try:
+					option_selected = int(input("Option:"))
+				except NameError as e:
+					print("\nOption must be an integer value")
+					continue
+				if(option_selected == 1):
+					age_functionality()
+				elif(option_selected == 2):
+					math_functionality()
+				if(option_selected <= 0 or option_selected >= 3):
+					raise CustomException
+			except ValueError as e:
+				print("\nPlease select option between 1 & 2")
+			except (CustomException, UserAgeException) as e:
+				print("\nCustom exception occured: %s" % e)
+			else:
+				print("\nOptions executed successfully")
+				break
+			finally:
+				print("\nThis is the finally block, it will always print at the end\n")
